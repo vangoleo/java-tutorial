@@ -11,6 +11,7 @@
         <module>protobuf</module>
         <module>bom</module>
         <module>parent</module>
+        <module>async-http-client</module>
     </modules>
 
     <packaging>pom</packaging>
