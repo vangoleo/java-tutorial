@@ -13,6 +13,7 @@
         <module>parent</module>
         <module>async-http-client</module>
         <module>servlet3-springmvc</module>
+        <module>dubbo</module>
     </modules>
 
     <packaging>pom</packaging>
