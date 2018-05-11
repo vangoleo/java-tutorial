@@ -1,8 +1,10 @@
 package com.leibangzhu.javatutorial.dubbo.provider;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+@Ignore
 public class ProviderTest {
     @Test
     public void start_provider_1() throws Exception {

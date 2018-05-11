@@ -7,6 +7,7 @@
     <groupId>com.leibangzhu.tutorial</groupId>
     <artifactId>java-tutorial</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>protobuf</module>
         <module>bom</module>
@@ -16,6 +17,7 @@
         <module>dubbo</module>
         <module>jdk</module>
         <module>rxjava2</module>
+        <module>spring</module>
     </modules>
 
     <packaging>pom</packaging>
