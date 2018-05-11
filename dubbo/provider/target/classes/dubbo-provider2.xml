@@ -4,8 +4,10 @@
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:application name="demo-consumer"/>
-    <dubbo:registry address="zookeeper://127.0.0.1:2181"/>
+    <dubbo:application name="demo-provider"/>
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
+    <dubbo:protocol name="dubbo" port="20882" serialization="fastjson"/>
 
-    <dubbo:reference id="helloService" interface="com.leibangzhu.javatutorial.dubbo.api.IHelloService" loadbalance="my" />
+    <bean id="helloService" class="com.leibangzhu.javatutorial.dubbo.provider.HelloService"/>
+    <dubbo:service interface="com.leibangzhu.javatutorial.dubbo.api.IHelloService" ref="helloService"/>
 </beans>
