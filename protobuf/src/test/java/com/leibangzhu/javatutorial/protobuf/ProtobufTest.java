@@ -1,5 +1,6 @@
 package com.leibangzhu.javatutorial.protobuf;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.FileInputStream;
@@ -8,6 +9,7 @@ import java.io.FileOutputStream;
 import com.leibangzhu.javatutorial.protobuf.AddressBookProtos.AddressBook;
 import com.leibangzhu.javatutorial.protobuf.AddressBookProtos.Person;
 
+@Ignore
 public class ProtobufTest {
 
     private final String fileName = "/Users/leiwei/tmp/person.protobuf";

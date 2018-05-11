@@ -18,6 +18,7 @@
         <module>jdk</module>
         <module>rxjava2</module>
         <module>spring</module>
+        <module>etcd</module>
     </modules>
 
     <packaging>pom</packaging>
