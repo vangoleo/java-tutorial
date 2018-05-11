@@ -15,6 +15,7 @@
         <module>servlet3-springmvc</module>
         <module>dubbo</module>
         <module>jdk</module>
+        <module>rxjava2</module>
     </modules>
 
     <packaging>pom</packaging>
