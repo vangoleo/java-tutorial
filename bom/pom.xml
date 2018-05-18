@@ -79,6 +79,12 @@
                 <groupId>com.coreos</groupId>
                 <artifactId>jetcd-core</artifactId>
                 <version>${etcd.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.grpc</groupId>
+                        <artifactId>grpc-netty</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>

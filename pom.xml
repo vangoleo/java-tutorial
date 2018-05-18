@@ -19,6 +19,7 @@
         <module>rxjava2</module>
         <module>spring</module>
         <module>etcd</module>
+        <module>netty</module>
     </modules>
 
     <packaging>pom</packaging>
