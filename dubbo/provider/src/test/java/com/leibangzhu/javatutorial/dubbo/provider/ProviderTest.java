@@ -29,4 +29,13 @@ public class ProviderTest {
         System.out.println("Dubbo Provider 3 started successfully...");
         System.in.read();
     }
+
+    @Test
+    public void start_provider() throws Exception{
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[]{"dubbo-provider4.xml"});
+        context.start();
+        System.out.println("Dubbo Provider 4 started successfully...");
+        System.in.read();
+    }
+
 }
