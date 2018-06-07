@@ -1,10 +1,12 @@
 package com.leibangzhu.javatutorial.protobuf;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.PrintStream;
 
 import com.leibangzhu.javatutorial.protobuf.AddressBookProtos.AddressBook;
 import com.leibangzhu.javatutorial.protobuf.AddressBookProtos.Person;
@@ -39,6 +41,26 @@ public class ProtobufTest {
 
         AddressBook addressBook2 = AddressBook.parseFrom(data);
         print(addressBook2);
+    }
+
+    @Test
+    public void test_write_to_read_from_bytes_student() throws Exception {
+        StudentModel.Student student = create_student();
+
+        byte[] data = student.toByteArray();
+
+        StudentModel.Student student2 = StudentModel.Student.parseFrom(data);
+        print(student2);
+    }
+
+    private StudentModel.Student create_student(){
+        StudentModel.Student.Builder student = StudentModel.Student.newBuilder();
+
+        student.setName("tom");
+        student.setId(10);
+        student.setEmail("tom@gmail.com");
+
+        return student.build();
     }
 
     private AddressBook create_address_book(){
@@ -79,6 +101,12 @@ public class ProtobufTest {
                 System.out.println(phoneNumber.getType());
             }
         }
+    }
+
+    private void print(StudentModel.Student student){
+        System.out.println(student.getName());
+        System.out.println(student.getId());
+        System.out.println(student.getEmail());
     }
 
 }

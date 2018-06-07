@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package tutorial;
+
+option java_package = "com.leibangzhu.javatutorial.protobuf";
+option java_outer_classname = "StudentModel";
+
+message Student {
+  string name = 1;
+  int32 id = 2;
+  string email = 3;
+}
