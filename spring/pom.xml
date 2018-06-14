@@ -17,6 +17,7 @@
     <modules>
         <module>spring-bean-definition</module>
         <module>spring-bean-init</module>
+        <module>spring-profiles</module>
     </modules>
 
 
