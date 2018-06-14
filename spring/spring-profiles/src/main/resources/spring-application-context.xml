@@ -12,6 +12,7 @@
         <context:component-scan base-package="com.leibangzhu.tutorial.spring.profiles.develop" />
         <!-- 加载开发使用的配置文件 -->
         <util:properties id="config" location="classpath:develop/config.properties"/>
+        <context:property-placeholder location="classpath:develop/config.properties" />
     </beans>
 
     <!-- 定义生产使用的profile -->
@@ -21,5 +22,6 @@
                 base-package="com.leibangzhu.tutorial.spring.profiles.product" />
         <!-- 加载生产使用的配置文件 -->
         <util:properties id="config" location="classpath:product/config.properties"/>
+        <context:property-placeholder location="classpath:product/config.properties" />
     </beans>
 </beans>

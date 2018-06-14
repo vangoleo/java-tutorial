@@ -10,8 +10,11 @@ public class ProductHelloService implements IHelloService {
     @Value("#{config.name}")
     private String name;
 
+    @Value("${mail}")
+    private String mail;
+
     @Override
     public String sayHello() {
-        return "Hello, I'm " + name + "; This is a product environment.";
+        return "Hello, I'm " + name + "; mail is " + mail + "; This is a product environment.";
     }
 }
