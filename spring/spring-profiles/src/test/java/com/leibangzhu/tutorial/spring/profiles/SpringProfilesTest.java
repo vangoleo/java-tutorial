@@ -18,6 +18,5 @@ public class SpringProfilesTest {
     @Test
     public void test(){
         System.out.println(helloService.sayHello());
-
     }
 }
