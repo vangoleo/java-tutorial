@@ -21,6 +21,7 @@
         <module>etcd</module>
         <module>netty</module>
         <module>protostuff</module>
+        <module>spring-boot</module>
     </modules>
 
     <packaging>pom</packaging>

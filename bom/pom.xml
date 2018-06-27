@@ -22,6 +22,7 @@
         <netty4.version>4.1.24.Final</netty4.version>
         <rxjava2.version>2.1.4</rxjava2.version>
         <spring.version>4.3.11.RELEASE</spring.version>
+        <springboot.version>1.5.9.RELEASE</springboot.version>
         <etcd.version>0.0.1</etcd.version>
         <objenesis.version>2.6</objenesis.version>
     </properties>
@@ -80,6 +81,16 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
+                <artifactId>spring-web</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-webmvc</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
                 <artifactId>spring-expression</artifactId>
                 <version>${spring.version}</version>
             </dependency>
@@ -87,6 +98,13 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+
+            <!-- Spring Boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${springboot.version}</version>
             </dependency>
 
             <dependency>
