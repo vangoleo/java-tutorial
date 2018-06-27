@@ -1,4 +1,4 @@
-package com.leibangzhu.tutorial.netty;
+package com.leibangzhu.tutorial.netty.echo;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;

@@ -1,4 +1,4 @@
-package com.leibangzhu.tutorial.netty;
+package com.leibangzhu.tutorial.netty.echo;
 
 import org.junit.Test;
 

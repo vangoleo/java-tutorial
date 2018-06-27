@@ -1,4 +1,4 @@
-package com.leibangzhu.tutorial.netty;
+package com.leibangzhu.tutorial.netty.echo;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
