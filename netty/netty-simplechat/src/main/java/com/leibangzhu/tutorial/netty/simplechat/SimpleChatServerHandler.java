@@ -27,6 +27,7 @@ public class SimpleChatServerHandler extends SimpleChannelInboundHandler<String>
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+        System.out.println("Received data:" + msg);
         Channel incoming = ctx.channel();
         for (Channel channel : channels){
             if (channel != incoming){

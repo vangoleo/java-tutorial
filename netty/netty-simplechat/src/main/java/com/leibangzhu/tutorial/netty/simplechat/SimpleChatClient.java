@@ -26,8 +26,13 @@ public class SimpleChatClient {
 
             Channel channel = bootstrap.connect(host,port).sync().channel();
 
+            System.out.println("Connect to " + host + ":" + port);
+
+            Thread.sleep(10 * 1000);
+
+            // 向server发送消息
             channel.writeAndFlush("hello" + System.lineSeparator());
-            channel.writeAndFlush("world" + System.lineSeparator());
+            //channel.writeAndFlush("world" + System.lineSeparator());
             Thread.sleep(100 * 1000);
 
             //BufferedReader in = new BufferedReader(new InputStreamReader(System.in));

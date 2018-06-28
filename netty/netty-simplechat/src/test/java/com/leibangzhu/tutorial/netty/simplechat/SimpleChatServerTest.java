@@ -10,5 +10,4 @@ public class SimpleChatServerTest {
         server.run();
         Thread.sleep(100 * 1000);
     }
-
 }

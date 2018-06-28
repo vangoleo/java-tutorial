@@ -1,0 +1,3 @@
+netty应用用于代理的sample
+
+本sample中，一个netty应用既是Netty的Server端，同时又是Netty的Client端。
