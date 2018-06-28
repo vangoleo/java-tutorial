@@ -14,6 +14,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>netty-echo</module>
+        <module>netty-request-response</module>
+        <module>netty-simplechat</module>
     </modules>
 
     <dependencies>
