@@ -3,12 +3,14 @@ package com.leibangzhu.tutorial.netty.proxy;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
-import io.netty.channel.*;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelFutureListener;
+import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
-import java.net.InetSocketAddress;
 import java.nio.charset.Charset;
 
 public class ProxyServer {
@@ -37,54 +39,23 @@ public class ProxyServer {
                     @Override
                     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
 
-//                        System.out.println("Received data");
-//                        if (toRemoteHostChannelFuture.isDone()){
-//                            System.out.println("Channel to localhost:9000 is done");
-//                            toRemoteHostChannelFuture.channel().writeAndFlush("hello\n");
-//                        }
+                        if (toRemoteHostChannelFuture.isDone()){
+                            System.out.println("Channel to localhost:9000 is done");
+                            toRemoteHostChannelFuture.channel().writeAndFlush(msg.toString(Charset.defaultCharset()) + "\n");
+                        }
                     }
 
                     @Override
                     public void channelActive(ChannelHandlerContext ctx) throws Exception {
-                        //run000();
                         System.out.println("Server" + ctx.channel().remoteAddress() + "connected to Proxy Server");
                         Bootstrap bootstrap = new Bootstrap()
                                 .group(ctx.channel().eventLoop())
                                 .channel(NioSocketChannel.class)
                                 .handler(new SimpleChatClientInitializer());
 
-//                        bootstrap.group(new NioEventLoopGroup())
-//                                .channel(NioSocketChannel.class)
-//                                .handler(new SimpleChatClientInitializer());
-
-//                        bootstrap.channel(NioSocketChannel.class).handler(
-//                                new SimpleChannelInboundHandler<ByteBuf>() {
-//                                    @Override
-//                                    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) {
-//                                        System.out.println("Received data" + msg.toString(Charset.defaultCharset()));
-//                                    }
-//                                });
-                        //bootstrap.group(ctx.channel().eventLoop());
-                        //bootstrap.group(new NioEventLoopGroup());
-
                         toRemoteHostChannelFuture = bootstrap.connect("127.0.0.1",9000);
 
-                        //System.out.println("Connect to " + host + ":" + port);
-
                         Thread.sleep(5 * 1000);
-
-                        // 向server发送消息
-                        toRemoteHostChannelFuture.channel().writeAndFlush("hello" + System.lineSeparator());
-
-                        //toRemoteHostChannelFuture = bootstrap.connect(new InetSocketAddress("localhost",9000));
-
-//                        Thread.sleep(5 * 1000);
-//
-//                        if (toRemoteHostChannelFuture.isDone()){
-//                            System.out.println("Channel to localhost:9000 is done");
-//                            toRemoteHostChannelFuture.channel().writeAndFlush("hello\n");
-//                        }
-//
                     }
                 });
 
@@ -97,34 +68,4 @@ public class ProxyServer {
             }
         });
     }
-
-    public static void run000() throws Exception{
-        EventLoopGroup group = new NioEventLoopGroup();
-
-        try {
-            Bootstrap bootstrap = new Bootstrap()
-                    .group(group)
-                    .channel(NioSocketChannel.class)
-                    .handler(new SimpleChatClientInitializer());
-
-            Channel channel = bootstrap.connect("127.0.0.1",9000).sync().channel();
-
-            System.out.println("Connect to " + "127.0.0.1" + ":" + "9000");
-
-            Thread.sleep(10 * 1000);
-
-            // 向server发送消息
-            channel.writeAndFlush("hello" + System.lineSeparator());
-            //channel.writeAndFlush("world" + System.lineSeparator());
-            Thread.sleep(100 * 1000);
-
-            //BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-//            while (true){
-//                channel.writeAndFlush(in.readLine() + "\r\n");
-//            }
-        }finally {
-            group.shutdownGracefully();
-        }
-    }
-
 }

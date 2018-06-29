@@ -22,15 +22,13 @@ import java.util.PrimitiveIterator;
  */
 public class BootstrapSharingEventLoopGroup {
 
+    // 该channel代表echoClient到Proxy的Channel,为了简单，此处用一个全局静态变量来保存。只有一个echoClient。
     private static Channel channel;
 
     /**
      * 代码清单 8-5 引导服务器
      * */
     public void bootstrap() {
-
-        // 该channel代表echoClient到Proxy的Channel
-
 
         //创建 ServerBootstrap 以创建 ServerSocketChannel，并绑定它
         ServerBootstrap bootstrap = new ServerBootstrap();
@@ -74,24 +72,20 @@ public class BootstrapSharingEventLoopGroup {
                     @Override
                     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {
                         if (connectFuture.isDone()) {
-                            connectFuture.channel().writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
                             //当连接完成时，执行一些数据操作（如代理）
                             // do something with the data
+                            connectFuture.channel().writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
                         }
                     }
                 });
         //通过配置好的 ServerBootstrap 绑定该 ServerSocketChannel
         ChannelFuture future = bootstrap.bind(new InetSocketAddress(8000));
-        future.addListener(new ChannelFutureListener() {
-            @Override
-            public void operationComplete(ChannelFuture channelFuture)
-                throws Exception {
-                if (channelFuture.isSuccess()) {
-                    System.out.println("Server bound");
-                } else {
-                    System.err.println("Bind attempt failed");
-                    channelFuture.cause().printStackTrace();
-                }
+        future.addListener((ChannelFutureListener) channelFuture -> {
+            if (channelFuture.isSuccess()) {
+                System.out.println("Server bound");
+            } else {
+                System.err.println("Bind attempt failed");
+                channelFuture.cause().printStackTrace();
             }
         });
     }

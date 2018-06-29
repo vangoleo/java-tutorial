@@ -2,6 +2,7 @@ package com.leibangzhu.tutorial.netty.echo;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -29,13 +30,13 @@ public class EchoClient {
                     .remoteAddress(new InetSocketAddress(host,port))
                     .handler(new EchoClientInitializer());
 
-            ChannelFuture f = b.connect().sync();
+            Channel channel = b.connect().sync().channel();
 
-            Thread.sleep(5 * 1000);
+            Thread.sleep(2 * 1000);
 
-            f.channel().writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
+            channel.writeAndFlush(Unpooled.copiedBuffer("Netty rocks!", CharsetUtil.UTF_8));
 
-            f.channel().closeFuture().sync();
+            channel.closeFuture().sync();
         }finally {
             group.shutdownGracefully().sync();
         }
