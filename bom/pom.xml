@@ -25,6 +25,7 @@
         <springboot.version>1.5.9.RELEASE</springboot.version>
         <etcd.version>0.0.1</etcd.version>
         <objenesis.version>2.6</objenesis.version>
+        <jmh.version>1.19</jmh.version>
     </properties>
 
     <dependencyManagement>
@@ -133,6 +134,20 @@
                 <artifactId>objenesis</artifactId>
                 <version>${objenesis.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-core</artifactId>
+                <version>${jmh.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.openjdk.jmh</groupId>
+                <artifactId>jmh-generator-annprocess</artifactId>
+                <version>${jmh.version}</version>
+                <scope>provided</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

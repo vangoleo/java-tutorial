@@ -22,6 +22,7 @@
         <module>netty</module>
         <module>protostuff</module>
         <module>spring-boot</module>
+        <module>jmh</module>
     </modules>
 
     <packaging>pom</packaging>
