@@ -26,11 +26,12 @@ public class FirstBenchmark {
 
         Options opt = new OptionsBuilder()
                 .include(FirstBenchmark.class.getSimpleName())
-                .forks(1)
-                .warmupIterations(5)
-                .measurementIterations(5)
+                .forks(1)                       // fork出几个进程来进行测试
+                .warmupIterations(5)            // 预热的迭代次数
+                .measurementIterations(5)       // 实际测量的迭代次数
                 .build();
 
         new Runner(opt).run();
     }
 }
+

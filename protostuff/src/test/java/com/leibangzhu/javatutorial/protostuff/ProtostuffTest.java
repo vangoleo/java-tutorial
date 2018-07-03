@@ -1,6 +1,5 @@
 package com.leibangzhu.javatutorial.protostuff;
 
-import com.leibangzhu.javatutorial.protobuf.AddressBookProtos;
 import com.leibangzhu.javatutorial.protobuf.RequestModel;
 import com.leibangzhu.javatutorial.protobuf.ResponseModel;
 import com.leibangzhu.javatutorial.protobuf.StudentModel;
@@ -12,12 +11,8 @@ import io.protostuff.runtime.RuntimeSchema;
 import org.junit.Test;
 import org.objenesis.Objenesis;
 import org.objenesis.ObjenesisStd;
-import sun.jvm.hotspot.runtime.Bytes;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProtostuffTest {
 
@@ -52,10 +47,8 @@ public class ProtostuffTest {
 
     @Test
     public void test4(){
-        Map<String,String> params = new LinkedHashMap<>();
-        params.put("hello","world");
-        params.put("foo","bar");
-        Request request = new Request(10,"haha",params);
+
+        Request request = create_request();
 
         LinkedBuffer buffer = LinkedBuffer.allocate();
         Schema<Request> schema = RuntimeSchema.getSchema(Request.class);
@@ -124,6 +117,53 @@ public class ProtostuffTest {
         response2.getParamsList().forEach(s -> System.out.println(s.getKey() + s.getValue()));
     }
 
+    @Test
+    public void test_map(){
+
+        HashMap<String,String> map = new HashMap<>();
+        map.put("hello","world");
+        map.put("foo","bar");
+
+        LinkedBuffer buffer = LinkedBuffer.allocate();
+        Schema<HashMap> schema = RuntimeSchema.getSchema(HashMap.class);
+        byte[] bytes = ProtobufIOUtil.toByteArray(map,schema,buffer);
+
+        HashMap<String,String> map2 = schema.newMessage();
+        ProtobufIOUtil.mergeFrom(bytes,map2,schema);
+
+        // size为0，而不是2。
+        // 使用Protobuf直接序列化和反序列化一个Map是不行的
+        // 使用Protobuf序列化和反序列化含有Map字段的对象是可以的
+        // 所以，如果的确要实现序列化和反序列化一个Map，可以创建一个只有一个Map字段的类，比如MapWrapper，对MapWrapper进行序列化和反序列化
+
+        System.out.println(map2.size());
+    }
+
+    @Test
+    public void test_protobuf_map_wrapper(){
+
+        HashMap<String,String> map = new HashMap<>();
+        map.put("hello","world");
+        map.put("foo","bar");
+
+        ProtobufMapWrapper mapWrapper = new ProtobufMapWrapper(map);
+
+        LinkedBuffer buffer = LinkedBuffer.allocate();
+        Schema<ProtobufMapWrapper> schema = RuntimeSchema.getSchema(ProtobufMapWrapper.class);
+        byte[] bytes = ProtobufIOUtil.toByteArray(mapWrapper,schema,buffer);
+
+        ProtobufMapWrapper request2 = schema.newMessage();
+        ProtobufIOUtil.mergeFrom(bytes,request2,schema);
+
+        Map<String,String> map2 = mapWrapper.getMap();
+
+        System.out.println(map2.size());
+
+        // size为2
+        // 使用Protobuf直接序列化和反序列化一个Map是不行的
+        // 使用Protobuf序列化和反序列化含有Map字段的对象是可以的
+        // 所以，如果的确要实现序列化和反序列化一个Map，可以创建一个只有一个Map字段的类，比如MapWrapper，对MapWrapper进行序列化和反序列化
+    }
 
     private Request create_request(){
         Map<String,String> params = new LinkedHashMap<>();
