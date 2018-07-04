@@ -26,6 +26,7 @@
         <etcd.version>0.0.1</etcd.version>
         <objenesis.version>2.6</objenesis.version>
         <jmh.version>1.19</jmh.version>
+        <grpc.version>1.7.0</grpc.version>
     </properties>
 
     <dependencyManagement>
@@ -146,6 +147,22 @@
                 <artifactId>jmh-generator-annprocess</artifactId>
                 <version>${jmh.version}</version>
                 <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-netty</artifactId>
+                <version>${grpc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-protobuf</artifactId>
+                <version>${grpc.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.grpc</groupId>
+                <artifactId>grpc-stub</artifactId>
+                <version>${grpc.version}</version>
             </dependency>
 
         </dependencies>
