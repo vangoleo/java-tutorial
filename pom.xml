@@ -24,6 +24,7 @@
         <module>spring-boot</module>
         <module>jmh</module>
         <module>grpc</module>
+        <module>bytebuddy</module>
     </modules>
 
     <packaging>pom</packaging>

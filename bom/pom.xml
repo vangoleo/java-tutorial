@@ -27,6 +27,7 @@
         <objenesis.version>2.6</objenesis.version>
         <jmh.version>1.19</jmh.version>
         <grpc.version>1.7.0</grpc.version>
+        <byte-buddy.version>1.7.9</byte-buddy.version>
     </properties>
 
     <dependencyManagement>
@@ -163,6 +164,12 @@
                 <groupId>io.grpc</groupId>
                 <artifactId>grpc-stub</artifactId>
                 <version>${grpc.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.bytebuddy</groupId>
+                <artifactId>byte-buddy</artifactId>
+                <version>${byte-buddy.version}</version>
             </dependency>
 
         </dependencies>
